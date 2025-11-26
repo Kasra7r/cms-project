@@ -2,7 +2,7 @@
 
 A modern full-stack CMS dashboard built with **React + Material UI** on the frontend and **Node.js + Express + MongoDB** on the backend.  
 Includes authentication, analytics, team management, multilingual UI, real-time chat, and an AI-powered assistant.
-
+![Screenshot] https://github.com/Kasra7r/cms-project/issues/1#issue-3667472677
 ---
 
 ## 🚀 Features
