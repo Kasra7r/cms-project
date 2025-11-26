@@ -1,0 +1,64 @@
+{
+  "appName": "PageCraft",
+  "logout": "Déconnexion",
+
+  "cancel": "Annuler",
+  "create": "Créer",
+  "saveChanges": "Enregistrer les modifications",
+
+  "menu.dashboard": "Tableau de bord",
+  "menu.profile": "Profil",
+  "menu.projects": "Projets",
+  "menu.tasks": "Tâches",
+  "menu.teams": "Équipes",
+  "menu.messages": "Messages",
+  "menu.calendar": "Calendrier",
+  "menu.analytics": "Analyse",
+  "menu.notes": "Notes",
+  "menu.settings": "Paramètres",
+  "menu.support": "Support",
+  "menu.admin": "Panneau d'administration",
+
+  "pages.dashboard.title": "Tableau de bord",
+  "pages.profile.title": "Profil",
+  "pages.projects.title": "Projets",
+  "pages.tasks.title": "Tâches",
+  "pages.teams.title": "Équipes",
+  "pages.messages.title": "Messages",
+  "pages.calendar.title": "Calendrier",
+  "pages.analytics.title": "Analyse",
+  "pages.notes.title": "Notes",
+  "pages.settings.title": "Paramètres",
+  "pages.support.title": "Support",
+
+  "dashboard.recentActivity": "Activités récentes",
+
+  "chat.title": "Assistant PageCraft",
+  "chat.placeholder": "Tapez un message…",
+  "chat.send": "Envoyer",
+    "chat.emptyState": "Bonjour, je suis votre assistant PageCraft. N'hésitez pas à me poser des questions sur vos projets, vos tâches ou vos utilisateurs.",
+
+  "notes.new": "Nouvelle note",
+  "notes.edit": "Modifier la note",
+  "notes.title": "Titre",
+  "notes.body": "Contenu",
+  "notes.completed": "Terminé",
+  "notes.markCompleted": "Marquer comme terminé",
+  "notes.saveError": "Erreur lors de l'enregistrement.",
+  "notes.deleteError": "Erreur lors de la suppression.",
+  "notes.loadError": "Erreur lors du chargement des notes.",
+  "notes.none": "Aucune note disponible.",
+  "notes.untitled": "Sans titre",
+
+  "messages.conversations": "Conversations",
+  "messages.selectChat": "Sélectionnez une conversation",
+  "messages.placeholder": "Tapez un message…",
+
+  "calendar.eventsOfDay": "Événements du jour",
+  "calendar.noEvents": "Aucun événement pour ce jour.",
+  "calendar.time": "Heure",
+
+  "analytics.total": "Total",
+  "analytics.count": "Entrées",
+  "analytics.noData": "Aucune donnée analytique."
+}

@@ -1,0 +1,26 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Roboto", "Vazirmatn", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* همه‌جا با box-sizing: border-box */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* دکمه‌های MUI کمی گردتر و بولدتر */
+.MuiButton-root {
+  font-weight: 600;
+  border-radius: 10px;
+}

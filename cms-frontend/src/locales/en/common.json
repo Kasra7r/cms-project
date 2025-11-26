@@ -1,0 +1,63 @@
+{
+  "appName": "PageCraft",
+  "logout": "Logout",
+
+  "cancel": "Cancel",
+  "create": "Create",
+  "saveChanges": "Save changes",
+
+  "menu.dashboard": "Dashboard",
+  "menu.profile": "Profile",
+  "menu.projects": "Projects",
+  "menu.tasks": "Tasks",
+  "menu.teams": "Teams",
+  "menu.messages": "Messages",
+  "menu.calendar": "Calendar",
+  "menu.analytics": "Analytics",
+  "menu.notes": "Notes",
+  "menu.settings": "Settings",
+  "menu.support": "Support",
+  "menu.admin": "Admin Panel",
+
+  "pages.dashboard.title": "Dashboard",
+  "pages.profile.title": "Profile",
+  "pages.projects.title": "Projects",
+  "pages.tasks.title": "Tasks",
+  "pages.teams.title": "Teams",
+  "pages.messages.title": "Messages",
+  "pages.calendar.title": "Calendar",
+  "pages.analytics.title": "Analytics",
+  "pages.notes.title": "Notes",
+  "pages.settings.title": "Settings",
+  "pages.support.title": "Support",
+
+  "dashboard.recentActivity": "Recent activity",
+
+  "chat.title": "PageCraft assistant",
+  "chat.placeholder": "Type a message…",
+  "chat.send": "Send",
+
+  "notes.new": "New note",
+  "notes.edit": "Edit note",
+  "notes.title": "Title",
+  "notes.body": "Body",
+  "notes.completed": "Completed",
+  "notes.markCompleted": "Mark as completed",
+  "notes.saveError": "Failed to save note.",
+  "notes.deleteError": "Failed to delete note.",
+  "notes.loadError": "Failed to load notes.",
+  "notes.none": "No notes yet.",
+  "notes.untitled": "Untitled",
+
+  "messages.conversations": "Conversations",
+  "messages.selectChat": "Select a conversation",
+  "messages.placeholder": "Type a message…",
+
+  "calendar.eventsOfDay": "Events of the day",
+  "calendar.noEvents": "No events for this day.",
+  "calendar.time": "Time",
+
+  "analytics.total": "Total",
+  "analytics.count": "Entries",
+  "analytics.noData": "No analytics data available."
+}

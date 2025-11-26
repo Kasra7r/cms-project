@@ -1,0 +1,64 @@
+{
+  "appName": "پیج‌کرفت",
+  "logout": "خروج",
+
+  "cancel": "انصراف",
+  "create": "ایجاد",
+  "saveChanges": "ذخیره تغییرات",
+
+  "menu.dashboard": "داشبورد",
+  "menu.profile": "پروفایل",
+  "menu.projects": "پروژه‌ها",
+  "menu.tasks": "تسک‌ها",
+  "menu.teams": "تیم‌ها",
+  "menu.messages": "پیام‌ها",
+  "menu.calendar": "تقویم",
+  "menu.analytics": "آنالیز",
+  "menu.notes": "یادداشت‌ها",
+  "menu.settings": "تنظیمات",
+  "menu.support": "پشتیبانی",
+  "menu.admin": "پنل ادمین",
+
+  "pages.dashboard.title": "داشبورد",
+  "pages.profile.title": "پروفایل",
+  "pages.projects.title": "پروژه‌ها",
+  "pages.tasks.title": "تسک‌ها",
+  "pages.teams.title": "تیم‌ها",
+  "pages.messages.title": "پیام‌ها",
+  "pages.calendar.title": "تقویم",
+  "pages.analytics.title": "آنالیز",
+  "pages.notes.title": "یادداشت‌ها",
+  "pages.settings.title": "تنظیمات",
+  "pages.support.title": "پشتیبانی",
+
+  "dashboard.recentActivity": "فعالیت‌های اخیر",
+
+  "chat.title": "دستیار پیج کرفت",
+  "chat.placeholder": "پیامی بنویسید…",
+  "chat.send": "ارسال",
+  "chat.emptyState":"سلام, من دستیار شما هستم. چه کمکی از من برمیاد؟",
+
+  "notes.new": "یادداشت جدید",
+  "notes.edit": "ویرایش یادداشت",
+  "notes.title": "عنوان",
+  "notes.body": "متن",
+  "notes.completed": "تکمیل‌شده",
+  "notes.markCompleted": "علامت‌گذاری به‌عنوان کامل",
+  "notes.saveError": "خطا در ذخیره یادداشت.",
+  "notes.deleteError": "خطا در حذف یادداشت.",
+  "notes.loadError": "خطا در بارگذاری یادداشت‌ها.",
+  "notes.none": "هیچ یادداشتی وجود ندارد.",
+  "notes.untitled": "بدون عنوان",
+
+  "messages.conversations": "گفتگوها",
+  "messages.selectChat": "یک گفتگو انتخاب کنید",
+  "messages.placeholder": "پیامی بنویسید…",
+
+  "calendar.eventsOfDay": "رویدادهای این روز",
+  "calendar.noEvents": "رویدادی برای این روز وجود ندارد.",
+  "calendar.time": "زمان",
+
+  "analytics.total": "مجموع",
+  "analytics.count": "ورودی‌ها",
+  "analytics.noData": "داده‌ای برای آنالیز موجود نیست."
+}

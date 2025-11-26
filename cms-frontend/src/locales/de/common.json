@@ -1,0 +1,65 @@
+{
+  "appName": "PageCraft",
+  "logout": "Abmelden",
+
+  "cancel": "Abbrechen",
+  "create": "Erstellen",
+  "saveChanges": "Änderungen speichern",
+
+  "menu.dashboard": "Dashboard",
+  "menu.profile": "Profil",
+  "menu.projects": "Projekte",
+  "menu.tasks": "Aufgaben",
+  "menu.teams": "Teams",
+  "menu.messages": "Nachrichten",
+  "menu.calendar": "Kalender",
+  "menu.analytics": "Analytik",
+  "menu.notes": "Notizen",
+  "menu.settings": "Einstellungen",
+  "menu.support": "Support",
+  "menu.admin": "Adminbereich",
+
+  "pages.dashboard.title": "Dashboard",
+  "pages.profile.title": "Profil",
+  "pages.projects.title": "Projekte",
+  "pages.tasks.title": "Aufgaben",
+  "pages.teams.title": "Teams",
+  "pages.messages.title": "Nachrichten",
+  "pages.calendar.title": "Kalender",
+  "pages.analytics.title": "Analytik",
+  "pages.notes.title": "Notizen",
+  "pages.settings.title": "Einstellungen",
+  "pages.support.title": "Support",
+
+  "dashboard.recentActivity": "Letzte Aktivitäten",
+
+  "chat.title": "PageCraft Assistent",
+  "chat.placeholder": "Nachricht eingeben…",
+  "chat.send": "Senden",
+    "chat.emptyState": "Hallo, ich bin Ihr PageCraft-Assistent. Fragen Sie mich nach Ihren Projekten, Aufgaben oder Benutzern.",
+
+
+  "notes.new": "Neue Notiz",
+  "notes.edit": "Notiz bearbeiten",
+  "notes.title": "Titel",
+  "notes.body": "Text",
+  "notes.completed": "Abgeschlossen",
+  "notes.markCompleted": "Als abgeschlossen markieren",
+  "notes.saveError": "Fehler beim Speichern der Notiz.",
+  "notes.deleteError": "Fehler beim Löschen der Notiz.",
+  "notes.loadError": "Fehler beim Laden der Notizen.",
+  "notes.none": "Keine Notizen vorhanden.",
+  "notes.untitled": "Ohne Titel",
+
+  "messages.conversations": "Unterhaltungen",
+  "messages.selectChat": "Eine Unterhaltung auswählen",
+  "messages.placeholder": "Nachricht eingeben…",
+
+  "calendar.eventsOfDay": "Ereignisse des Tages",
+  "calendar.noEvents": "Keine Ereignisse für diesen Tag.",
+  "calendar.time": "Zeit",
+
+  "analytics.total": "Gesamt",
+  "analytics.count": "Einträge",
+  "analytics.noData": "Keine Analysedaten verfügbar."
+}
