@@ -2,6 +2,7 @@
 
 Eine moderne Full-Stack-CMS-Applikation mit **React + Material UI** im Frontend und **Node.js + Express + MongoDB** im Backend.  
 Enthält Authentifizierung, Rollenrechte, Kalender, Aufgaben, Notizen, Echtzeit-Chat und einen KI-basierten Assistenten.
+![Screenshot] https://github.com/Kasra7r/cms-project/issues/1#issue-3667472677
 
 ---
 
