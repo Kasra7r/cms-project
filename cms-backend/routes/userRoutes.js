@@ -8,23 +8,19 @@ const {
   updateProfile,
   uploadAvatar,
   deleteAvatar,
-  changePassword,
+  changePassword
 } = require("../controllers/userController");
 const User = require("../models/User");
 const Role = require("../models/Role");
 
-// تنظیمات آپلود آواتار
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) =>
+    cb(null, Date.now() + path.extname(file.originalname))
 });
+
 const upload = multer({ storage });
 
-// پروفایل خود کاربر
 router.get("/me", protect, getProfile);
 router.get("/profile", protect, getProfile);
 router.put("/profile", protect, updateProfile);
@@ -32,34 +28,26 @@ router.post("/profile/avatar", protect, upload.single("avatar"), uploadAvatar);
 router.delete("/profile/avatar", protect, deleteAvatar);
 router.put("/profile/password", protect, changePassword);
 
-// مدیریت کاربران (ادمین / منیجر)
 router.get("/", protect, checkRole(["admin", "manager"]), async (req, res) => {
   try {
     const users = await User.find().populate("roles", "name");
     res.json(users);
   } catch (err) {
-    console.error("fetch users error:", err);
     res.status(500).json({ message: "Error fetching users" });
   }
 });
 
-router.delete(
-  "/:id",
-  protect,
-  checkRole(["admin"]),
-  async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      if (!user) return res.status(404).json({ message: "User not found" });
+router.delete("/:id", protect, checkRole(["admin"]), async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-      await user.deleteOne();
-      res.json({ message: "User deleted successfully" });
-    } catch (err) {
-      console.error("delete user error:", err);
-      res.status(500).json({ message: "Error deleting user" });
-    }
+    await user.deleteOne();
+    res.json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error deleting user" });
   }
-);
+});
 
 router.patch(
   "/:id/role",
@@ -76,9 +64,10 @@ router.patch(
       const roleDoc = await Role.findOne({ name: role });
       if (!roleDoc) return res.status(404).json({ message: "Role not found" });
 
-      const hasRole = user.roles.some((r) => r.name === role);
+      const hasRole = user.roles.some(r => r.name === role);
+
       if (hasRole) {
-        user.roles = user.roles.filter((r) => r.name !== role);
+        user.roles = user.roles.filter(r => r.name !== role);
       } else {
         user.roles.push(roleDoc._id);
       }
@@ -87,7 +76,6 @@ router.patch(
       const updated = await User.findById(user._id).populate("roles", "name");
       res.json(updated);
     } catch (err) {
-      console.error("update role error:", err);
       res.status(500).json({ message: "Error updating role" });
     }
   }
