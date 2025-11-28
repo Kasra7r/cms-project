@@ -3,7 +3,6 @@ const Role = require("../models/Role");
 const { protect, checkRole } = require("../middleware/authMiddleware");
 const router = express.Router();
 
-// فقط ادمین / منیجر اجازه ساخت نقش دارند
 router.post(
   "/create",
   protect,
@@ -15,6 +14,9 @@ router.post(
       await newRole.save();
       res.status(201).json(newRole);
     } catch (error) {
+      if (error.code === 11000) {
+        return res.status(400).json({ message: "Role name already exists" });
+      }
       res.status(500).json({ message: "Error creating role" });
     }
   }
