@@ -6,11 +6,10 @@ const {
   getTasks,
   getTaskById,
   updateTask,
-  deleteTask,
+  deleteTask
 } = require("../controllers/taskController");
 const { protect, checkRole } = require("../middleware/authMiddleware");
 
-// /api/tasks
 router.post("/", protect, checkRole(["admin", "manager"]), createTask);
 router.get("/", protect, getTasks);
 router.get("/:id", protect, getTaskById);
