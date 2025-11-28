@@ -1,7 +1,5 @@
-// controllers/taskController.js
 const Task = require("../models/Task");
 
-// POST /api/tasks
 const createTask = async (req, res) => {
   try {
     const {
@@ -35,7 +33,6 @@ const createTask = async (req, res) => {
   }
 };
 
-// GET /api/tasks
 const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find()
@@ -50,7 +47,6 @@ const getTasks = async (req, res) => {
   }
 };
 
-// GET /api/tasks/:id
 const getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id)
@@ -65,7 +61,6 @@ const getTaskById = async (req, res) => {
   }
 };
 
-// PATCH /api/tasks/:id
 const updateTask = async (req, res) => {
   try {
     const {
@@ -102,7 +97,6 @@ const updateTask = async (req, res) => {
   }
 };
 
-// DELETE /api/tasks/:id
 const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
