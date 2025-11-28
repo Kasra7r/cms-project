@@ -1,8 +1,10 @@
 const errorHandler = (err, req, res, next) => {
-  console.error('❌ Error:', err.message);
-  res.status(500).json({
-    message: err.message || 'An unexpected error occurred',
-  });
+  const status = err.status || 500;
+  const message = err.message || "An unexpected error occurred";
+
+  console.error("❌ Error:", message);
+
+  res.status(status).json({ message });
 };
 
 module.exports = errorHandler;
