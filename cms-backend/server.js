@@ -1,4 +1,3 @@
-// server.js
 require("dotenv").config();
 const path = require("path");
 const http = require("http");
@@ -7,15 +6,11 @@ const jwt = require("jsonwebtoken");
 const connectDB = require("./config/db");
 const { protect } = require("./middleware/authMiddleware");
 
-// اتصال به دیتابیس
 connectDB();
 
 const app = express();
 const server = http.createServer(app);
 
-// ----------------------
-// 🧩 Safe require & safe route use
-// ----------------------
 function safeRequire(path) {
   try {
     return require(path);
@@ -37,18 +32,9 @@ function safeUseRoute(app, mountPath, routerModule) {
   }
 }
 
-// ----------------------
-// 🌍 Environment
-// ----------------------
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-const PORT = process.env.PORT || 5000;
-
-// ----------------------
-// 🔌 Socket.IO setup
-// ----------------------
 const { Server } = require("socket.io");
 const io = new Server(server, {
-  cors: { origin: [FRONTEND_URL, "http://localhost:5173"], credentials: true },
+  cors: { origin: [FRONTEND_URL, "http://localhost:5173"], credentials: true }
 });
 app.set("io", io);
 
@@ -66,7 +52,7 @@ io.use((socket, next) => {
   }
 });
 
-io.on("connection", (socket) => {
+io.on("connection", socket => {
   const userId = socket.user?.id;
   if (userId) {
     const set = onlineUsers.get(userId) || new Set();
@@ -89,9 +75,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// ----------------------
-// 🧱 Middlewares
-// ----------------------
 function safeMiddleware(name) {
   try {
     return require(name);
@@ -107,17 +90,28 @@ const compression = safeMiddleware("compression");
 const rateLimit = safeMiddleware("express-rate-limit");
 const cookieParser = safeMiddleware("cookie-parser");
 
-if (helmet) app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
-if (cors)
+if (helmet) {
+  app.use(
+    helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } })
+  );
+}
+
+if (cors) {
   app.use(
     cors({
       origin: [FRONTEND_URL, "http://localhost:5173"],
-      credentials: true,
+      credentials: true
     })
   );
-if (morgan) app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
+}
+
+if (morgan) {
+  app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
+}
+
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
+
 if (cookieParser) app.use(cookieParser());
 if (compression) app.use(compression());
 
@@ -126,19 +120,13 @@ if (rateLimit) {
     windowMs: 15 * 60 * 1000,
     max: 1000,
     standardHeaders: true,
-    legacyHeaders: false,
+    legacyHeaders: false
   });
   app.use("/api", apiLimiter);
 }
 
-// ----------------------
-// 📁 Static uploads
-// ----------------------
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ----------------------
-// 🧭 Route imports (ایمن)
-// ----------------------
 const authRoutes = safeRequire("./routes/authRoutes");
 const userRoutes = safeRequire("./routes/userRoutes");
 const projectRoutes = safeRequire("./routes/projectRoutes");
@@ -147,16 +135,9 @@ const roleRoutes = safeRequire("./routes/roleRoutes");
 const customerRoutes = safeRequire("./routes/customerRoutes");
 const messageRoutes = safeRequire("./routes/messageRoutes");
 
-// ----------------------
-// 🧭 API Routes
-// ----------------------
 app.get("/api/health", (req, res) => res.json({ ok: true, ts: Date.now() }));
 
-// Public
 safeUseRoute(app, "/api/auth", authRoutes);
-
-// Protected – خود روت‌ها معمولاً داخل‌شون protect دارند.
-// اگر جایی یادت رفته، بعداً تو خود فایل روت اضافه می‌کنیم.
 safeUseRoute(app, "/api/users", userRoutes);
 safeUseRoute(app, "/api/projects", projectRoutes);
 safeUseRoute(app, "/api/tasks", taskRoutes);
@@ -164,9 +145,6 @@ safeUseRoute(app, "/api/roles", roleRoutes);
 safeUseRoute(app, "/api/customers", customerRoutes);
 safeUseRoute(app, "/api/messages", messageRoutes);
 
-// ----------------------
-// 🔧 Placeholder routes برای صفحه‌هایی که بک‌اندشون هنوز فیکه
-// ----------------------
 app.get("/api/teams", protect, (req, res) => res.json([]));
 app.get("/api/calendar/events", protect, (req, res) => res.json([]));
 app.get("/api/analytics", protect, (req, res) => res.json({ summary: [] }));
@@ -174,15 +152,14 @@ app.get("/api/notes", protect, (req, res) => res.json([]));
 app.get("/api/settings", protect, (req, res) => res.json({ ok: true }));
 app.get("/api/support/tickets", protect, (req, res) => res.json([]));
 
-// ----------------------
-// 🤖 ChatBot (OpenAI)
-// ----------------------
 const OpenAI = require("openai");
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.post("/api/chat", protect, async (req, res) => {
   const { message, history = [] } = req.body;
-  if (!message) return res.status(400).json({ reply: "Message cannot be empty." });
+  if (!message) {
+    return res.status(400).json({ reply: "Message cannot be empty." });
+  }
 
   try {
     const completion = await openai.chat.completions.create({
@@ -193,11 +170,11 @@ app.post("/api/chat", protect, async (req, res) => {
           content:
             "You are a multilingual intelligent assistant for a CMS dashboard. " +
             "Detect the user's language and reply in the same language. " +
-            "Be concise, friendly, and professional.",
+            "Be concise, friendly, and professional."
         },
         ...history,
-        { role: "user", content: message },
-      ],
+        { role: "user", content: message }
+      ]
     });
 
     const reply = completion.choices[0].message.content;
@@ -205,30 +182,21 @@ app.post("/api/chat", protect, async (req, res) => {
   } catch (err) {
     console.error("OpenAI error:", err);
     res.status(500).json({
-      reply: "⚠️ Error connecting to the AI server. Please try again later.",
+      reply: "⚠️ Error connecting to the AI server. Please try again later."
     });
   }
 });
 
-// ----------------------
-// 🚫 404 handler
-// ----------------------
 app.all(/^\/api\/.*/, (req, res) => {
   res.status(404).json({ message: "Not Found" });
 });
 
-// ----------------------
-// ⚛️ React fallback
-// ----------------------
 const clientBuild = path.join(__dirname, "..", "cms-frontend", "build");
 app.use(express.static(clientBuild));
 app.get(/^(?!\/api\/).*/, (req, res) => {
   res.sendFile(path.join(clientBuild, "index.html"));
 });
 
-// ----------------------
-// 🚀 Start server
-// ----------------------
 server.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
