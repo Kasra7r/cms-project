@@ -1,27 +1,39 @@
-// models/Customer.js
-const mongoose = require('mongoose');
+const Customer = require("../models/Customer");
 
-const customerSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true, index: true },
-    phone: String,
-    address: String,
-    company: String,
-  },
-  { timestamps: true, versionKey: false, toJSON: { virtuals: true }, toObject: { virtuals: true } }
-);
+const createCustomer = async (req, res) => {
+  const { name, email, phone, address, company } = req.body;
 
-customerSchema.virtual('id').get(function () {
-  return this._id.toHexString();
-});
+  try {
+    const customer = new Customer({ name, email, phone, address, company });
+    await customer.save();
+    res.status(201).json(customer);
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+    res.status(500).json({ message: "Error creating customer" });
+  }
+};
 
-customerSchema.set('toJSON', {
-  virtuals: true,
-  transform: (doc, ret) => {
-    delete ret._id;
-    return ret;
-  },
-});
+const getCustomers = async (req, res) => {
+  try {
+    const customers = await Customer.find();
+    res.json(customers);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching customers" });
+  }
+};
 
-module.exports = mongoose.model('Customer', customerSchema);
+const getCustomerById = async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+    res.json(customer);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching customer" });
+  }
+};
+
+module.exports = { createCustomer, getCustomers, getCustomerById };
