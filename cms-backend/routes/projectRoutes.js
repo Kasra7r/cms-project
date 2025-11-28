@@ -1,7 +1,5 @@
-// controllers/projectController.js
 const Project = require("../models/Project");
 
-// POST /api/projects
 exports.createProject = async (req, res) => {
   try {
     const { name, owner, description, status, startDate, dueDate } = req.body || {};
@@ -16,7 +14,7 @@ exports.createProject = async (req, res) => {
       description: description ? String(description).trim() : undefined,
       status: status || "Planned",
       startDate: startDate ? new Date(startDate) : undefined,
-      dueDate: dueDate ? new Date(dueDate) : undefined,
+      dueDate: dueDate ? new Date(dueDate) : undefined
     });
 
     return res.status(201).json(project);
@@ -26,7 +24,6 @@ exports.createProject = async (req, res) => {
   }
 };
 
-// GET /api/projects
 exports.getProjects = async (req, res) => {
   try {
     const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
@@ -45,14 +42,14 @@ exports.getProjects = async (req, res) => {
 
     const [items, total] = await Promise.all([
       Project.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
-      Project.countDocuments(filter),
+      Project.countDocuments(filter)
     ]);
 
     return res.json({
       items,
       total,
       page,
-      limit,
+      limit
     });
   } catch (err) {
     console.error("getProjects error:", err);
@@ -60,7 +57,6 @@ exports.getProjects = async (req, res) => {
   }
 };
 
-// GET /api/projects/:id
 exports.getProjectById = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -72,7 +68,6 @@ exports.getProjectById = async (req, res) => {
   }
 };
 
-// PATCH /api/projects/:id
 exports.updateProject = async (req, res) => {
   try {
     const { name, owner, description, status, startDate, dueDate } = req.body || {};
@@ -82,16 +77,12 @@ exports.updateProject = async (req, res) => {
     if (owner !== undefined) update.owner = owner ? String(owner).trim() : "";
     if (description !== undefined) update.description = description;
     if (status !== undefined) update.status = status;
-    if (startDate !== undefined) {
-      update.startDate = startDate ? new Date(startDate) : null;
-    }
-    if (dueDate !== undefined) {
-      update.dueDate = dueDate ? new Date(dueDate) : null;
-    }
+    if (startDate !== undefined) update.startDate = startDate ? new Date(startDate) : null;
+    if (dueDate !== undefined) update.dueDate = dueDate ? new Date(dueDate) : null;
 
     const project = await Project.findByIdAndUpdate(req.params.id, update, {
       new: true,
-      runValidators: true,
+      runValidators: true
     });
 
     if (!project) return res.status(404).json({ message: "Project not found" });
@@ -102,7 +93,6 @@ exports.updateProject = async (req, res) => {
   }
 };
 
-// DELETE /api/projects/:id
 exports.deleteProject = async (req, res) => {
   try {
     const project = await Project.findByIdAndDelete(req.params.id);
