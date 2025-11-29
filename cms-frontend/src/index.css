@@ -12,14 +12,12 @@ body {
     BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* همه‌جا با box-sizing: border-box */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* دکمه‌های MUI کمی گردتر و بولدتر */
 .MuiButton-root {
   font-weight: 600;
   border-radius: 10px;
