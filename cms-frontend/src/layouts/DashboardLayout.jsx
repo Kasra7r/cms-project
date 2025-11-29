@@ -1,4 +1,3 @@
-// src/layouts/DashboardLayout.jsx
 import React from "react";
 import {
   Box,
@@ -55,7 +54,6 @@ export default function DashboardLayout() {
 
   const displayName = user?.name || user?.username || "User";
 
-  // جدول مرتب‌شده جدید
   const menuItems = [
     { key: "dashboard", icon: <DashboardIcon />, path: "/dashboard" },
 
@@ -69,9 +67,6 @@ export default function DashboardLayout() {
     { key: "analytics", icon: <AnalyticsIcon />, path: "/dashboard/analytics" },
     { key: "settings", icon: <SettingsIcon />, path: "/dashboard/settings" },
     { key: "support", icon: <SupportIcon />, path: "/dashboard/support" },
-
-    { key: "admin", icon: <AdminIcon />, path: "/dashboard/admin" },
-  ];
 
   const handleNav = (path) => navigate(path);
 
