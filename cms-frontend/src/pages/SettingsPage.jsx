@@ -1,4 +1,3 @@
-// src/pages/SettingsPage.jsx
 import React, { useEffect, useState } from "react";
 import {
   Alert,
