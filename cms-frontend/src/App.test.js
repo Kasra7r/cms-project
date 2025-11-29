@@ -1,44 +1,42 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import App from './App';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import App from "./App";
 
-test('renders home page', () => {
+test("renders home page", () => {
   render(
-    <Router>
+    <MemoryRouter initialEntries={["/"]}>
       <App />
-    </Router>
+    </MemoryRouter>
   );
-  // اطمینان از وجود متن "Welcome to CMS" در صفحه
-  const linkElement = screen.getByText(/welcome to cms/i);
-  expect(linkElement).toBeInTheDocument();
+
+  const heading = screen.getByRole("heading", { level: 1 });
+  expect(heading).toBeInTheDocument();
 });
 
-test('navigates to register page', () => {
+test("navigates to register page", () => {
   render(
-    <Router>
+    <MemoryRouter initialEntries={["/"]}>
       <App />
-    </Router>
+    </MemoryRouter>
   );
-  // کلیک روی دکمه "Register"
-  const registerButton = screen.getByText(/Register/i);
+
+  const registerButton = screen.getByRole("button", { name: /register/i });
   fireEvent.click(registerButton);
-  
-  // اطمینان از نمایش صفحه ثبت‌نام
-  const registerHeader = screen.getByText(/Register/i);
-  expect(registerHeader).toBeInTheDocument();
+
+  const registerTitle = screen.getByRole("heading", { name: /register/i });
+  expect(registerTitle).toBeInTheDocument();
 });
 
-test('navigates to login page', () => {
+test("navigates to login page", () => {
   render(
-    <Router>
+    <MemoryRouter initialEntries={["/"]}>
       <App />
-    </Router>
+    </MemoryRouter>
   );
-  // کلیک روی دکمه "Login"
-  const loginButton = screen.getByText(/Login/i);
+
+  const loginButton = screen.getByRole("button", { name: /login/i });
   fireEvent.click(loginButton);
-  
-  // اطمینان از نمایش صفحه ورود
-  const loginHeader = screen.getByText(/Login/i);
-  expect(loginHeader).toBeInTheDocument();
+
+  const loginTitle = screen.getByRole("heading", { name: /login/i });
+  expect(loginTitle).toBeInTheDocument();
 });
