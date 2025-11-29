@@ -1,4 +1,3 @@
-// src/theme.js
 import { createTheme } from "@mui/material/styles";
 
 export function createAppTheme(mode = "dark", isRTL = false) {
