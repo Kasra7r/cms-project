@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -11,13 +10,12 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (!token) return;
-    // (اختیاری) می‌تونی /api/users/me رو بخونی و user رو sync کنی
   }, [token]);
 
   async function login(email, password) {
     setLoading(true);
     try {
-      const { data } = await api.post("/api/auth/login", { email, password }); // ⬅️ با /api
+      const { data } = await api.post("/api/auth/login", { email, password });
       if (!data?.token) throw new Error("Invalid response");
       localStorage.setItem("token", data.token);
       setToken(data.token);
@@ -31,7 +29,7 @@ export function AuthProvider({ children }) {
   async function register(username, email, password) {
     setLoading(true);
     try {
-      const { data } = await api.post("/api/auth/register", { username, email, password }); // ⬅️ با /api
+      const { data } = await api.post("/api/auth/register", { username, email, password });
       return data;
     } finally {
       setLoading(false);
