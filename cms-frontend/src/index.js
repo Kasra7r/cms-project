@@ -1,4 +1,3 @@
-// src/index.js
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -9,24 +8,21 @@ import CssBaseline from "@mui/material/CssBaseline";
 import App from "./App";
 import "./index.css";
 
-// i18n
+
 import "./i18n";
 import i18n from "./i18n";
 import { I18nextProvider } from "react-i18next";
 
-// تم
 import { ThemeProvider, useThemeMode } from "./ThemeContext";
 import { createAppTheme } from "./theme";
 import RTLProvider from "./theme/RTLProvider";
 
-// تاریخ
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/fa";
 import "dayjs/locale/de";
 import "dayjs/locale/fr";
 
-// احراز هویت
 import { AuthProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
