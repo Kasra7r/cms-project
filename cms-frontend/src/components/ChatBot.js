@@ -25,55 +25,51 @@ export default function ChatBot() {
   const listRef = useRef(null);
 
   useEffect(() => {
-    if (open)
-      setTimeout(() => {
-        listRef.current?.scrollTo(
-          0,
-          listRef.current.scrollHeight
-        );
-      }, 0);
+    if (!open || !listRef.current) return;
+    setTimeout(() => {
+      listRef.current?.scrollTo(0, listRef.current.scrollHeight);
+    }, 0);
   }, [open, messages]);
 
   async function sendMessage(e) {
     e?.preventDefault?.();
+
     const text = value.trim();
     if (!text || sending) return;
-    setMessages((m) => [
-      ...m,
-      { role: "user", content: text },
-    ]);
+
+    const newUserMessage = { role: "user", content: text };
+
+    setMessages((prev) => [...prev, newUserMessage]);
     setValue("");
     setSending(true);
+
     try {
-      const history = messages
+      const history = [...messages, newUserMessage]
         .slice(-10)
         .map((m) => ({
           role: m.role,
           content: m.content,
         }));
+
       const { data } = await api.post("/api/chat", {
         message: text,
         history,
       });
+
       const reply =
         (data && data.reply) ||
-        t(
-          "chat.error",
-          "Sorry, something went wrong."
-        );
-      setMessages((m) => [
-        ...m,
+        t("chat.error", "Sorry, something went wrong.");
+
+      setMessages((prev) => [
+        ...prev,
         { role: "assistant", content: reply },
       ]);
     } catch {
-      setMessages((m) => [
-        ...m,
+      setMessages((prev) => [
+        ...prev,
         {
           role: "assistant",
-          content: t(
-            "chat.connectionError",
-            "Connection error."
-          ),
+          content: t("chat.connectionError", "Connection error."),
         },
       ]);
     } finally {
@@ -129,9 +125,7 @@ export default function ChatBot() {
               color: "#fff",
             }}
           >
-            <Typography
-              sx={{ fontWeight: 700, flex: 1 }}
-            >
+            <Typography sx={{ fontWeight: 700, flex: 1 }}>
               {t("chat.title", "PageCraft Assistant")}
             </Typography>
             <IconButton
@@ -153,16 +147,14 @@ export default function ChatBot() {
             }}
           >
             {messages.length === 0 && (
-              <Typography
-                variant="body2"
-                color="text.secondary"
-              >
+              <Typography variant="body2" color="text.secondary">
                 {t(
                   "chat.emptyState",
                   "Hi, I'm your PageCraft assistant. Ask me about your projects, tasks, or users."
                 )}
               </Typography>
             )}
+
             <Stack spacing={1.2}>
               {messages.map((m, i) => (
                 <Box
@@ -170,9 +162,7 @@ export default function ChatBot() {
                   sx={{
                     display: "flex",
                     justifyContent:
-                      m.role === "user"
-                        ? "flex-end"
-                        : "flex-start",
+                      m.role === "user" ? "flex-end" : "flex-start",
                   }}
                 >
                   <Box
@@ -182,13 +172,9 @@ export default function ChatBot() {
                       maxWidth: "80%",
                       borderRadius: 2,
                       bgcolor:
-                        m.role === "user"
-                          ? "primary.main"
-                          : "action.hover",
+                        m.role === "user" ? "primary.main" : "action.hover",
                       color:
-                        m.role === "user"
-                          ? "#fff"
-                          : "text.primary",
+                        m.role === "user" ? "#fff" : "text.primary",
                       whiteSpace: "pre-wrap",
                     }}
                   >
@@ -200,6 +186,7 @@ export default function ChatBot() {
           </Box>
 
           <Divider />
+
           <Stack
             component="form"
             onSubmit={sendMessage}
@@ -210,14 +197,9 @@ export default function ChatBot() {
             <TextField
               size="small"
               fullWidth
-              placeholder={t(
-                "chat.placeholder",
-                "Type a message."
-              )}
+              placeholder={t("chat.placeholder", "Type a message.")}
               value={value}
-              onChange={(e) =>
-                setValue(e.target.value)
-              }
+              onChange={(e) => setValue(e.target.value)}
               disabled={sending}
             />
             <Button
