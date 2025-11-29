@@ -31,7 +31,7 @@ export default function HomePage() {
         }}
       >
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 2 }}>
-          PageCraft Dashboard
+          Welcome to PageCraft
         </Typography>
         <Typography variant="h6" sx={{ mb: 4 }}>
           A modern workspace to manage projects, tasks, teams and analytics — in
