@@ -1,4 +1,3 @@
-// src/pages/ProjectsPage.jsx
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import {
