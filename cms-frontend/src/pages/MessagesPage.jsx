@@ -1,4 +1,3 @@
-// src/pages/MessagesPage.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import {
