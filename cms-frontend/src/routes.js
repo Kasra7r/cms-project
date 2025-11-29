@@ -1,4 +1,3 @@
-// src/routes.js
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -24,7 +23,7 @@ const routes = [
     path: '/dashboard',
     element: <DashboardPage />,
     children: [
-      { path: '', element: <AnalyticsPage /> },        // index (اختیاری)
+      { path: '', element: <AnalyticsPage /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'projects', element: <ProjectsPage /> },
       { path: 'tasks', element: <TasksPage /> },
@@ -35,7 +34,7 @@ const routes = [
       { path: 'notes', element: <NotesPage /> },
       { path: 'settings', element: <SettingsPage /> },
       { path: 'support', element: <SupportPage /> },
-      { path: 'admin', element: <AdminPage /> },       // اگر RoleRoute می‌ذاری، همون‌جا کنترل کن
+      { path: 'admin', element: <AdminPage /> },
     ],
   },
 ];
