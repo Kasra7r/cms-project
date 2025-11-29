@@ -1,4 +1,3 @@
-// src/pages/SupportPage.jsx
 import React, { useEffect, useState } from "react";
 import {
   Alert,
